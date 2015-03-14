@@ -45,7 +45,7 @@ pa = {
           depth++; ptr++; ptr++; continue;
         }
         if (depth === 0) {
-          build[list[ptr]] = list[ptr+1];
+          build[list[ptr]] = this.guessType(list[ptr+1]);
           ptr++; ptr++; continue;
         }
         else {
@@ -53,5 +53,13 @@ pa = {
         }
     }
     return build;
+  },
+
+  guessType: function(val) {
+    if (val === 'true') { return true; }
+    if (val === 'false') { return false; }
+    if (/^(\-|\+)?[0-9]+$/.test(val)) { return parseInt(val); }
+    if (/^(\-|\+)?([0-9]+(\.[0-9]+)?)$/.test(val)) { return parseFloat(val); }
+    return val;
   }
 };
