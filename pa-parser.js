@@ -27,7 +27,7 @@ pa = {
   parse_async: function(t, cb) {
       _.defer(function(){
         cb(this.parse(t));
-      });
+      }.bind(this));
   },
 
   build_recursive: function(list, start) {
